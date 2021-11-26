@@ -22,17 +22,17 @@ export default {
     .album {
         text-align: center;
         width: calc(100% / 5 - 20px);
-        min-height: 400px;
+        min-height: 300px;
         padding: 10px;
         background-color: rgba(46,58,70,255);
-        margin: 10px;
+        margin-bottom: 20px ;
 
 
         h1 {
             color: white;
             font-size: 25px;
             text-transform: uppercase;
-            margin: 15px;
+            margin: 15px 0;
         }
 
         img {

@@ -46,10 +46,12 @@ export default {
 <style scoped lang="scss">
     section {
         background-color: rgba(30,45,59,255);
+        padding: 30px 0;
 
         #album-wrapper {
-            width: 75%;
-            margin: 15px auto;
+            width: 70%;
+            margin: 0 auto;
+            padding: 20px 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;

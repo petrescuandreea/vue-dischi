@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <header>
+      <!-- componente MyHeader  -->
+      <MyHeader/>
+    </header>
     <main>
       <!-- componente Albumlist  -->
     <Albumlist/>
@@ -8,11 +12,14 @@
 </template>
 
 <script>
+import MyHeader from './components/MyHeader.vue';
 import Albumlist from './components/Albumlist.vue'
+
 
 export default {
   name: 'App',
   components: {
+    MyHeader,
     Albumlist
   }
 }

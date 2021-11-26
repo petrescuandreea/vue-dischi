@@ -1,6 +1,8 @@
 <template>
   <section>
-      <div id="album-wrapper">
+      <Loader  v-if="albumArray.length === 0"/>
+
+      <div v-else id="album-wrapper">
          <Album 
          v-for="album, i in albumArray" 
          :key="i" 
@@ -12,12 +14,15 @@
 
 <script>
 import axios from 'axios';
-import Album from '@/components/Album.vue'
+import Album from '@/components/Album.vue';
+import Loader from '@/components/Loader.vue';
+
 
 export default {
   name: 'Albumlist',
   components: {
-      Album
+      Album,
+      Loader
   },
   data() {
       return {

@@ -1,17 +1,15 @@
 <template>
   <section>
-      <FilterAlbum @filter="selectGenre"/> 
-      
-      <Loader  v-if="albumArray.length === 0"/>
+    <!-- catturo l'evento filter e gli passo la funzione selectGenre  -->
+    <FilterAlbum @filter="selectGenre"/> 
+    <Loader  v-if="albumArray.length === 0"/>
 
-      <div v-else id="album-wrapper">
-         <Album 
-         v-for="album, i in filteredalbumArray" 
-         :key="i" 
-         :details="album"/>
-      </div>
-
-
+    <div v-else id="album-wrapper">
+        <Album 
+        v-for="album, i in filteredAlbumArray" 
+        :key="i" 
+        :details="album"/>
+    </div>
   </section>
 </template>
 
@@ -34,7 +32,6 @@ export default {
         //   variabile che mi salva l'endpoint dell'API 
           apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
           albumArray: [],
-
           selectedGenre: 'all',
       }
   },
@@ -45,11 +42,14 @@ export default {
   },
 
   computed: {
-    filteredalbumArray() {
+    // creo una copia dell'array utilizzata per filtrare i dischi in base al genere 
+    filteredAlbumArray() { 
+      // se l'utente seleziona la voce 'all' compare l'array di partenza
       if (this.selectedGenre === 'all') {
         return this.albumArray;
       }
 
+      // altrimenti compare l'array filtrato in base a quello che l'utente ha selezionato
       return this.albumArray.filter((item) => {
         return item.genre.toLowerCase().includes(this.selectedGenre.toLowerCase());
       })
@@ -67,6 +67,8 @@ export default {
               this.albumArray = result.data.response;
           })
       },
+
+      // tengo traccia della selezione fatta dall'utente 
       selectGenre(event) {
           this.selectedGenre = event.target.value;
           console.log(this.selectedGenre);

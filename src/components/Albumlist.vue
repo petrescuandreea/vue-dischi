@@ -1,13 +1,16 @@
 <template>
   <section>
+      <FilterAlbum @filter="selectGenre"/> 
+      
       <Loader  v-if="albumArray.length === 0"/>
 
       <div v-else id="album-wrapper">
          <Album 
-         v-for="album, i in albumArray" 
+         v-for="album, i in filteredalbumArray" 
          :key="i" 
          :details="album"/>
       </div>
+
 
   </section>
 </template>
@@ -16,32 +19,58 @@
 import axios from 'axios';
 import Album from '@/components/Album.vue';
 import Loader from '@/components/Loader.vue';
-
+import FilterAlbum from '@/components/FilterAlbum.vue';
 
 export default {
   name: 'Albumlist',
   components: {
       Album,
-      Loader
+      Loader,
+      FilterAlbum
   },
+
   data() {
       return {
         //   variabile che mi salva l'endpoint dell'API 
           apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
           albumArray: [],
+
+          selectedGenre: 'all',
       }
   },
+
+//   lancia il prima possibile la chiama Ajax 
   created() {
       this.getAlbumList();
   },
+
+  computed: {
+    filteredalbumArray() {
+      if (this.selectedGenre === 'all') {
+        return this.albumArray;
+      }
+
+      return this.albumArray.filter((item) => {
+        return item.genre.toLowerCase().includes(this.selectedGenre.toLowerCase());
+      })
+      
+    }
+  },
+
   methods: {
       getAlbumList() {
+        //   chiamata axios 
           axios
+        //   richiamo l'endpoint 
           .get(this.apiUrl)
           .then((result) => {
               this.albumArray = result.data.response;
           })
-      }
+      },
+      selectGenre(event) {
+          this.selectedGenre = event.target.value;
+          console.log(this.selectedGenre);
+      },
   }
   
 }

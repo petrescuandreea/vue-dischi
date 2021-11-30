@@ -7,7 +7,8 @@
             <!-- lancio l'evento filter e gli passo il parametro genreFilter per inviare i dati
             associo all'evento change l'evento lanciato -->
                 <select @change="$emit('filter', genreFilter)" v-model="genreFilter">
-                    <option value="all">All</option>
+                    <option value="" selected disabled>-- --</option>
+                    <option value="tutti">Tutti</option>
                     <option value="rock">Rock</option>
                     <option value="pop">Pop</option>
                     <option value="jazz">Jazz</option>
@@ -35,10 +36,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
      #header {
+         width: 100vw;
          display: flex;
          justify-content: space-between;
          align-items: center;
-         background-color: rgba(46,58,70,255);
          padding: 10px 20px;
 
          i {

@@ -52,7 +52,7 @@ export default {
     // creo una copia dell'array utilizzata per filtrare i dischi in base al genere 
     filteredAlbumArray() { 
       // se l'utente seleziona la voce 'all' compare l'array di partenza
-      if (this.selectedGen === 'all') {
+      if (this.selectedGen === 'tutti') {
         return this.albumArray;
       }
 
@@ -98,7 +98,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     section {
-        background-color: rgba(30,45,59,255);
         padding: 30px 0;
 
         #album-wrapper {
@@ -107,7 +106,7 @@ export default {
             padding: 20px 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
     }
 </style>

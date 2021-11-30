@@ -25,7 +25,9 @@ export default {
         min-height: 300px;
         padding: 10px;
         background-color: rgba(46,58,70,255);
-        margin-bottom: 20px ;
+        margin: 0 20px 20px 0 ;
+        // margin-right: 20px;
+        // margin-bottom: 20px ;
 
 
         h1 {

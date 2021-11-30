@@ -5,6 +5,7 @@
       <!-- catturo l'evento lanciato dal figlio FilterAlbum  => emit -->
       <FilterAlbum :genres="genresList"  @filter="selectGenre"/>
     </header>
+
     <main>
       <!-- componente Albumlist  -->
       <!-- invio il dato ricevuto dal figlio FilterAlbum al fratello Albumlist => props -->
@@ -58,5 +59,18 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  header {
+    height: 80px;
+    background-color: rgba(46,58,70,255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  main {
+    min-height: calc(100vh - 80px);
+    background-color: rgba(30,45,59,255);
+  }
 }
 </style>

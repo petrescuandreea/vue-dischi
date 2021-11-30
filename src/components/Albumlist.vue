@@ -29,7 +29,7 @@ export default {
 
   props: {
     // dichiaro la prop per poter ricevere le info inviate dal componente padre 
-    selectedGenre: String,
+    selectedGen: String,
   },
 
   data() {
@@ -52,13 +52,13 @@ export default {
     // creo una copia dell'array utilizzata per filtrare i dischi in base al genere 
     filteredAlbumArray() { 
       // se l'utente seleziona la voce 'all' compare l'array di partenza
-      if (this.selectedGenre === 'all') {
+      if (this.selectedGen === 'all') {
         return this.albumArray;
       }
 
       // altrimenti compare l'array filtrato in base a quello che l'utente ha selezionato
       return this.albumArray.filter((item) => {
-        return item.genre.toLowerCase().includes(this.selectedGenre.toLowerCase());
+        return item.genre.toLowerCase().includes(this.selectedGen.toLowerCase());
       })
       
     }

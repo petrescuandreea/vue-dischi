@@ -8,7 +8,7 @@
     <main>
       <!-- componente Albumlist  -->
       <!-- invio il dato ricevuto dal figlio FilterAlbum al fratello Albumlist => props -->
-    <Albumlist :selectedGenre="genreToSearch" @genreReady="getGenresList"/>
+    <Albumlist :selectedGen="selectedGenre" @genreReady="getGenresList"/>
     </main>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
       genresList: [],
 
       // proprietà che mi salva il dato ricevuto dal componente figlio 
-      genreToSearch:"",
+      selectedGenre:"",
     }
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
 
     // tengo traccia della selezione fatta dall'utente 
     selectGenre(genreToSearch) {
-        this.selectedGenre = genreToSearch.target.value;
+        this.selectedGenre = genreToSearch;
         console.log(this.selectedGenre);
     },
   }

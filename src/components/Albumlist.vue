@@ -1,7 +1,7 @@
 <template>
   <section>
     <!-- catturo l'evento filter e gli passo la funzione selectGenre  -->
-    <FilterAlbum @filter="selectGenre"/> 
+    <!-- <FilterAlbum @filter="selectGenre"/>  -->
     <Loader  v-if="albumArray.length === 0"/>
 
     <div v-else id="album-wrapper">
@@ -17,14 +17,19 @@
 import axios from 'axios';
 import Album from '@/components/Album.vue';
 import Loader from '@/components/Loader.vue';
-import FilterAlbum from '@/components/FilterAlbum.vue';
+// import FilterAlbum from '@/components/FilterAlbum.vue';
 
 export default {
   name: 'Albumlist',
   components: {
       Album,
       Loader,
-      FilterAlbum
+      // FilterAlbum
+  },
+
+  props: {
+    // dichiaro la prop per poter ricevere le info inviate dal componente padre 
+    selectedGenre: String,
   },
 
   data() {
@@ -32,7 +37,9 @@ export default {
         //   variabile che mi salva l'endpoint dell'API 
           apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
           albumArray: [],
-          selectedGenre: 'all',
+
+          // array generi 
+          genres: [],
       }
   },
 
@@ -65,14 +72,24 @@ export default {
           .get(this.apiUrl)
           .then((result) => {
               this.albumArray = result.data.response;
-          })
+
+              this.albumArray.forEach(album => {
+                if(!this.genres.includes(album.genre)) {
+                  this.genres.push(album.genre);
+                  console.log(this.genres);
+                }
+              })
+          });
+
+          // lancio l'evento genreReady e gli passo il parametro genres per inviare i dati
+          this.$emit("genreReady", this.genres);
       },
 
       // tengo traccia della selezione fatta dall'utente 
-      selectGenre(event) {
-          this.selectedGenre = event.target.value;
-          console.log(this.selectedGenre);
-      },
+      // selectGenre(event) {
+      //     this.selectedGenre = event.target.value;
+      //     console.log(this.selectedGenre);
+      // },
   }
   
 }

@@ -1,33 +1,57 @@
 <template>
-    <div>
-        <label for="genre-select"> Seleziona genere:
-        <!-- associo l'evento change  -->
-            <select @change="$emit('filter', $event)">
-                <option value="all">All</option>
-                <option value="rock">Rock</option>
-                <option value="pop">Pop</option>
-                <option value="jazz">Jazz</option>
-                <option value="metal">Metal</option>
-            </select>
-        </label>
+    <div id="header">
+        <i class="fab fa-spotify"></i>
+
+        <div id="select">
+            <label for="genre-select"> Seleziona genere:
+            <!-- lancio l'evento filter e gli passo il parametro genreFilter per inviare i dati
+            associo all'evento change l'evento lanciato -->
+                <select @change="$emit('filter', genreFilter)" v-model="genreFilter">
+                    <option value="all">All</option>
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="metal">Metal</option>
+                </select>
+            </label>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
   name: 'FilterAlbum',
+  props: {
+      genres: Array,
+  },
+  data() {
+      return {
+          genreFilter: "",
+      }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    div {
-        text-align: center;
+     #header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         background-color: rgba(46,58,70,255);
+         padding: 10px 20px;
 
-        label {
-            font-size: 20px;
-            color: white;
-        }
-    }
+         i {
+             color: rgba(30,215,96,255);
+             font-size: 50px;
+         }
+
+         #select {
+             label {
+                 color: white;
+             }
+         }
+         
+  }
     
 </style>
